@@ -3,12 +3,13 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from random import randrange
+from UI import Ui_MainWindow
 
 
-class Flag(QMainWindow):
+class Flag(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.p = False
         self.bu.clicked.connect(self.run)
         self.show()
@@ -21,7 +22,7 @@ class Flag(QMainWindow):
                 x = randrange(1, self.width())
                 y = randrange(1, self.height())
                 d = randrange(1, min(self.height(), self.width()))
-                qp.setPen(QPen(QColor(255, 255, 0)))
+                qp.setPen(QPen(QColor(randrange(0, 255), randrange(0, 255), randrange(0, 255))))
                 qp.drawEllipse(x, y, d, d)
             qp.end()
             self.p = False
